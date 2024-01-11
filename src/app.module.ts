@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
-import { ItemsModule } from './items/items.module';
+import { ItemModule } from './item/item.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
+import { CostCodeModule } from './costCode/costCode.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    ItemsModule,
+    CostCodeModule,
+    ItemModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.DB_HOST,

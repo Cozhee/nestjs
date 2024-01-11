@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Item } from './item.model';
 
 @Injectable()
-export class ItemsService {
+export class ItemService {
   constructor(@InjectModel(Item) private readonly itemModel: typeof Item) {}
 
   async create(itemData): Promise<Item> {
