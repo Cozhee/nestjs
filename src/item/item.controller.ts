@@ -11,7 +11,7 @@ import {
 import { ItemService } from './item.service';
 import { Item } from './item.model';
 
-@Controller('items')
+@Controller('item')
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
 
@@ -23,6 +23,11 @@ export class ItemController {
   @Get()
   findAll(): Promise<Item[]> {
     return this.itemService.findAll();
+  }
+
+  @Get('costCode/:id')
+  itemsByCostCode(@Param('id') id: string) {
+    return this.itemService.itemsByCostCode(Number(id));
   }
 
   @Get(':id')

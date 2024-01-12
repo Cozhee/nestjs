@@ -33,4 +33,8 @@ export class ItemService {
   async remove(id: number): Promise<number> {
     return this.itemModel.destroy({ where: { id } });
   }
+
+  async itemsByCostCode(id: number) {
+    return this.itemModel.findAll({ where: { costCodeId: id } });
+  }
 }

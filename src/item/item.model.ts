@@ -34,5 +34,5 @@ export class Item extends Model<Item> {
   costCodeId: number;
 
   @BelongsTo(() => CostCode)
-  team: CostCode;
+  costCode: CostCode;
 }
