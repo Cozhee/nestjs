@@ -4,7 +4,7 @@ import { Item } from './item.model';
 
 @Injectable()
 export class ItemService {
-  constructor(@InjectModel(Item) private readonly itemModel: typeof Item) {}
+  constructor(@InjectModel(Item) private itemModel: typeof Item) { }
 
   async create(itemData): Promise<Item> {
     const item = new Item(itemData);

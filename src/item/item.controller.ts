@@ -2,7 +2,6 @@ import {
   Controller,
   Get,
   Post,
-  Put,
   Delete,
   Param,
   Body,
@@ -10,14 +9,15 @@ import {
 } from '@nestjs/common';
 import { ItemService } from './item.service';
 import { Item } from './item.model';
+import { ItemDto } from './dto';
 
 @Controller('item')
 export class ItemController {
-  constructor(private readonly itemService: ItemService) {}
+  constructor(private itemService: ItemService) { }
 
   @Post()
-  create(@Body() itemData): Promise<Item> {
-    return this.itemService.create(itemData);
+  create(@Body() dto: ItemDto): Promise<Item> {
+    return this.itemService.create(dto);
   }
 
   @Get()

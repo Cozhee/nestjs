@@ -3,11 +3,13 @@ import { ItemModule } from './item/item.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
 import { CostCodeModule } from './costCode/costCode.module';
+import { DivisionModule } from './division/division.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     CostCodeModule,
+    DivisionModule,
     ItemModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
@@ -21,4 +23,4 @@ import { CostCodeModule } from './costCode/costCode.module';
     }),
   ],
 })
-export class AppModule {}
+export class AppModule { }
