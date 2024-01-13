@@ -4,7 +4,7 @@ import { Item } from './item.model';
 
 @Injectable()
 export class ItemService {
-  constructor(@InjectModel(Item) private itemModel: typeof Item) { }
+  constructor(@InjectModel(Item) private itemModel: typeof Item) {}
 
   async create(itemData): Promise<Item> {
     const item = new Item(itemData);
@@ -19,15 +19,11 @@ export class ItemService {
     return this.itemModel.findOne({ where: { id } });
   }
 
-  async update(id: number, itemData): Promise<[number, Item[]]> {
-    const [affectedCount, affectedRows] = await this.itemModel.update(
-      itemData,
-      {
-        where: { id },
-        returning: true,
-      },
-    );
-    return [affectedCount, affectedRows as Item[]];
+  async update(id: number, data): Promise<Item> {
+    const item = await Item.findOne({ where: { id: id } });
+    await item.update(data);
+    await item.save();
+    return item;
   }
 
   async remove(id: number): Promise<number> {

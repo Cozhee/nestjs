@@ -1,20 +1,33 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import {
+  IsBoolean,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class ItemDto {
-    @IsString()
-    @IsNotEmpty()
-    name: string
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-    @IsString()
-    description: string
+  @IsString()
+  @IsOptional()
+  description: string;
 
-    @IsNumber()
-    standardCost: number
+  @IsNumber()
+  @IsOptional()
+  standardCost: number;
 
-    @IsBoolean()
-    itemStatus: boolean
+  @IsBoolean()
+  @IsOptional()
+  itemStatus: boolean;
 
-    @IsBoolean()
-    itemIsColor: boolean
+  @IsBoolean()
+  @IsOptional()
+  itemIsColor: boolean;
 
+  @IsNumber()
+  @IsOptional()
+  costCodeId: number;
 }

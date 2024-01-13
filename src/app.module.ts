@@ -4,6 +4,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
 import { CostCodeModule } from './costCode/costCode.module';
 import { DivisionModule } from './division/division.module';
+import { DivisionItemsModule } from './division-items/division-items.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { DivisionModule } from './division/division.module';
       autoLoadModels: true,
       synchronize: true,
     }),
+    DivisionItemsModule,
   ],
 })
 export class AppModule { }

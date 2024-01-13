@@ -13,7 +13,7 @@ import { ItemDto } from './dto';
 
 @Controller('item')
 export class ItemController {
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService) {}
 
   @Post()
   create(@Body() dto: ItemDto): Promise<Item> {
@@ -36,8 +36,8 @@ export class ItemController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() itemData): Promise<[number, Item[]]> {
-    return this.itemService.update(Number(id), itemData);
+  update(@Param('id') id: string, @Body() dto: ItemDto): Promise<Item> {
+    return this.itemService.update(Number(id), dto);
   }
 
   @Delete(':id')

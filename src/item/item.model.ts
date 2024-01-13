@@ -1,3 +1,4 @@
+import { BelongsToManyGetAssociationsMixin } from 'sequelize';
 import {
   Table,
   Column,
@@ -5,8 +6,11 @@ import {
   Unique,
   ForeignKey,
   BelongsTo,
+  BelongsToMany,
 } from 'sequelize-typescript';
 import { CostCode } from 'src/costCode/costCode.model';
+import { DivisionItems } from 'src/division-items/division-items.model';
+import { Division } from 'src/division/division.model';
 
 @Table
 export class Item extends Model<Item> {
@@ -14,19 +18,19 @@ export class Item extends Model<Item> {
   @Column
   name: string;
 
-  @Column
+  @Column({ defaultValue: 'woof' })
   description: string;
 
   @Column
   standardCost: number;
 
-  @Column
+  @Column({ defaultValue: false })
   itemStatus: boolean;
 
-  @Column
+  @Column({ defaultValue: false })
   itemIsColor: boolean;
 
-  @Column
+  @Column({ defaultValue: false })
   itemIsRetail: boolean;
 
   @ForeignKey(() => CostCode)
@@ -35,4 +39,9 @@ export class Item extends Model<Item> {
 
   @BelongsTo(() => CostCode)
   costCode: CostCode;
+
+  @BelongsToMany(() => Division, () => DivisionItems)
+  divisions: Division[];
+
+  declare addCostCodes: BelongsToManyGetAssociationsMixin<CostCode>;
 }

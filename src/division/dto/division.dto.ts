@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CostCodeDto {
+export class DivisionDto {
   @IsString()
   @IsNotEmpty()
-  costCodeDesc: string;
+  location: string;
 }
