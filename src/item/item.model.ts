@@ -18,7 +18,7 @@ export class Item extends Model<Item> {
   @Column
   name: string;
 
-  @Column({ defaultValue: 'woof' })
+  @Column
   description: string;
 
   @Column
@@ -42,6 +42,4 @@ export class Item extends Model<Item> {
 
   @BelongsToMany(() => Division, () => DivisionItems)
   divisions: Division[];
-
-  declare addCostCodes: BelongsToManyGetAssociationsMixin<CostCode>;
 }

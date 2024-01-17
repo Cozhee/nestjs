@@ -14,4 +14,16 @@ export class CostCodeService {
   async findAll(): Promise<CostCode[]> {
     return this.itemModel.findAll();
   }
+
+  async findOne(id: number): Promise<CostCode> {
+    return this.itemModel.findOne({ where: { id } });
+  }
+
+  async update(id: number, data: {}): Promise<CostCode> {
+    const item = await this.itemModel.findOne({ where: { id } });
+    console.log(item);
+    await item.update(data);
+    await item.save();
+    return item;
+  }
 }
