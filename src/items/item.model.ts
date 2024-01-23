@@ -1,4 +1,3 @@
-import { BelongsToManyGetAssociationsMixin } from 'sequelize';
 import {
   Table,
   Column,
@@ -8,9 +7,11 @@ import {
   BelongsTo,
   BelongsToMany,
 } from 'sequelize-typescript';
-import { CostCode } from 'src/costCode/costCode.model';
-import { DivisionItems } from 'src/division-items/division-items.model';
-import { Division } from 'src/division/division.model';
+import { CostCode } from 'src/costCodes/costCode.model';
+import { Division } from 'src/divisions/division.model';
+import { ItemDivision } from './itemDivisions/itemDivision.model';
+import { Package } from 'src/packages/package.model';
+import { PackageItem } from 'src/packages/packageItems/packageItem.model';
 
 @Table
 export class Item extends Model<Item> {
@@ -40,6 +41,9 @@ export class Item extends Model<Item> {
   @BelongsTo(() => CostCode)
   costCode: CostCode;
 
-  @BelongsToMany(() => Division, () => DivisionItems)
+  @BelongsToMany(() => Division, () => ItemDivision)
   divisions: Division[];
+
+  @BelongsToMany(() => Package, () => PackageItem)
+  packageItems: Package[]
 }

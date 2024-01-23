@@ -1,17 +1,14 @@
 import { Module } from '@nestjs/common';
-import { ItemModule } from './item/item.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
-import { CostCodeModule } from './costCode/costCode.module';
-import { DivisionModule } from './division/division.module';
-import { DivisionItemsModule } from './division-items/division-items.module';
+import { ItemModule } from './items/item.module';
+import { DivisionModule } from './divisions/division.module';
+import { CostCodeModule } from './costCodes/costCode.module';
+import { PackagesModule } from './packages/packages.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    CostCodeModule,
-    DivisionModule,
-    ItemModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.DB_HOST,
@@ -22,7 +19,10 @@ import { DivisionItemsModule } from './division-items/division-items.module';
       autoLoadModels: true,
       synchronize: true,
     }),
-    DivisionItemsModule,
+    ItemModule,
+    DivisionModule,
+    CostCodeModule,
+    PackagesModule,
   ],
 })
 export class AppModule { }

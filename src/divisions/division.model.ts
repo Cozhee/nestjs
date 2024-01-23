@@ -5,8 +5,8 @@ import {
   Unique,
   BelongsToMany,
 } from 'sequelize-typescript';
-import { DivisionItems } from 'src/division-items/division-items.model';
-import { Item } from 'src/item/item.model';
+import { ItemDivision } from 'src/items/itemDivisions/itemDivision.model';
+import { Item } from 'src/items/item.model';
 
 @Table
 export class Division extends Model<Division> {
@@ -14,6 +14,6 @@ export class Division extends Model<Division> {
   @Column
   location: string;
 
-  @BelongsToMany(() => Item, () => DivisionItems)
+  @BelongsToMany(() => Item, () => ItemDivision)
   items: Item[];
 }
