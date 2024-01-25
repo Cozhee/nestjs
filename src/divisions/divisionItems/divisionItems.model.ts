@@ -1,6 +1,4 @@
-import { Table, Model, Column, ForeignKey } from "sequelize-typescript";
+import { Table, Model } from 'sequelize-typescript';
 
 @Table
-export class DivisionItem extends Model<DivisionItem> {
-
-}
+export class DivisionItem extends Model<DivisionItem> {}

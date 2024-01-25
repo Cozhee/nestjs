@@ -25,4 +25,4 @@ import { PackagesModule } from './packages/packages.module';
     PackagesModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

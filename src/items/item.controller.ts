@@ -13,7 +13,7 @@ import { ItemDto } from './dto';
 
 @Controller('item')
 export class ItemController {
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService) {}
 
   @Post()
   create(@Body() dto: ItemDto): Promise<Item> {
@@ -45,8 +45,8 @@ export class ItemController {
     return this.itemService.remove(Number(id));
   }
 
-  @Post('test')
-  addTest() {
-    return this.itemService.addTest()
+  @Post('add-division/:id')
+  addDivisionToItem(@Param('id') id: number, @Body() data: {}) {
+    return this.itemService.addDivisionToItem(id, data);
   }
 }

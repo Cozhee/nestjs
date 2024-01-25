@@ -1,23 +1,27 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PackagesService } from './packages.service';
-import { Item } from 'src/items/item.model';
 
 @Controller('packages')
 export class PackagesController {
-  constructor(private readonly packagesService: PackagesService) { }
+  constructor(private readonly packagesService: PackagesService) {}
 
   @Post()
   create(@Body() data: {}): Promise<{}> {
-    return this.packagesService.create(data)
+    return this.packagesService.create(data);
   }
 
-  @Post('test')
-  async addItem(@Body() data: {}) {
-    return this.packagesService.addItem(data)
+  @Post('add-item/:id')
+  addItem(@Param('id') id: number, @Body() data: {}) {
+    return this.packagesService.addItem(id, data);
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number) {
-    return this.packagesService.findOne(id)
+  findOne(@Param('id') id: number) {
+    return this.packagesService.findOne(id);
+  }
+
+  @Get()
+  findAll() {
+    return this.packagesService.findAll();
   }
 }
