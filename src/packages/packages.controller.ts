@@ -1,18 +1,22 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PackagesService } from './packages.service';
+import { PackageDto } from './dto';
+import { ApiBody } from '@nestjs/swagger';
+import { PackageAddItemDto } from './dto/packageAddItem.dto';
 
 @Controller('packages')
 export class PackagesController {
   constructor(private readonly packagesService: PackagesService) {}
 
   @Post()
-  create(@Body() data: {}): Promise<{}> {
-    return this.packagesService.create(data);
+  create(@Body() dto: PackageDto): Promise<{}> {
+    return this.packagesService.create(dto);
   }
 
-  @Post('add-item/:id')
-  addItem(@Param('id') id: number, @Body() data: {}) {
-    return this.packagesService.addItem(id, data);
+  @Post('add-item/')
+  @ApiBody({ type: PackageAddItemDto })
+  addItem(@Body() dto: PackageAddItemDto) {
+    return this.packagesService.addItem(dto);
   }
 
   @Get(':id')

@@ -11,15 +11,15 @@ export class PackagesService {
     return this.itemModel.create(data);
   }
 
-  async addItem(id: number, data) {
-    const item = await Item.findOne({ where: { id: id } });
+  async addItem(data) {
+    const itemId = data.itemId;
+    const packageId = data.packageId;
+    const item = await Item.findOne({ where: { id: itemId } });
     const pckage = await this.itemModel.findOne({
-      where: { id: data.packageId },
+      where: { id: packageId },
     });
 
-    console.log(item);
-
-    const result = pckage.$add('packageItems', item);
+    const result = await pckage.$add('packageItems', item);
     return 'added';
   }
 
