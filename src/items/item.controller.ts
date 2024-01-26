@@ -10,27 +10,32 @@ import {
 import { ItemService } from './item.service';
 import { Item } from './item.model';
 import { ItemDto } from './dto';
+import { ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 
 @Controller('item')
 export class ItemController {
   constructor(private itemService: ItemService) {}
 
   @Post()
+  @ApiCreatedResponse({ description: 'Create Item' })
   create(@Body() dto: ItemDto): Promise<Item> {
     return this.itemService.create(dto);
   }
 
   @Get()
+  @ApiOkResponse({ description: 'Find all items' })
   findAll(): Promise<Item[]> {
     return this.itemService.findAll();
   }
 
   @Get('costCode/:id')
+  @ApiOkResponse({ description: 'Fetch items in a cost code group' })
   itemsByCostCode(@Param('id') id: string) {
     return this.itemService.itemsByCostCode(Number(id));
   }
 
   @Get(':id')
+  @ApiOkResponse({ description: 'Fetch single item by ID' })
   findOne(@Param('id') id: string): Promise<Item> {
     return this.itemService.findOne(Number(id));
   }
