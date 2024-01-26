@@ -3,7 +3,7 @@ import { DivisionService } from './division.service';
 import { Division } from './division.model';
 import { DivisionDto } from './dto';
 
-@Controller('division')
+@Controller('divisions')
 export class DivisionController {
   constructor(private divisionService: DivisionService) {}
   @Post()

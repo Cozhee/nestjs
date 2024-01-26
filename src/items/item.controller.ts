@@ -12,7 +12,7 @@ import { Item } from './item.model';
 import { ItemDto } from './dto';
 import { ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 
-@Controller('item')
+@Controller('items')
 export class ItemController {
   constructor(private itemService: ItemService) {}
 

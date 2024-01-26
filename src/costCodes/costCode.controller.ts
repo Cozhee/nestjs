@@ -3,7 +3,7 @@ import { CostCodeService } from './costCode.service';
 import { CostCode } from './costCode.model';
 import { CostCodeDto } from './dto';
 
-@Controller('cost-code')
+@Controller('cost-codes')
 export class CostCodeController {
   constructor(private costCodeService: CostCodeService) {}
 
